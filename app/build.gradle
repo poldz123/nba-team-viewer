@@ -36,14 +36,14 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    // AndroidX Google Library
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // AndroidX Google Library
+    implementation "androidx.core:core-ktx:$googleCoreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$googleAppcompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$googleConstraintLayoutVersion"
     implementation "androidx.activity:activity-ktx:$googleActivityKtxVersion"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:$googleRecyclerViewVersion"
 
     // Community libraries
     implementation "com.squareup.retrofit2:retrofit:$retrofitLibraryVersion"
@@ -58,9 +58,13 @@ dependencies {
     // Community libraries annotation processors
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiLibraryVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerLibraryVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$daggerLibraryVersion"
 
     // Test Library
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "junit:junit:$junitLibraryVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricLibraryVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpMockWebserverLibraryVersion"
+    testImplementation "com.google.truth:truth:$googleTrustLibraryVersion"
+    testImplementation "androidx.test.ext:junit:$googleTestSupport"
+    testImplementation "androidx.test:rules:$googleTestSupport"
 }

@@ -21,7 +21,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
-class AppModule {
+open class AppModule {
 
     @Qualifier
     @Retention(AnnotationRetention.RUNTIME)
@@ -30,6 +30,10 @@ class AppModule {
     @Qualifier
     @Retention(AnnotationRetention.RUNTIME)
     annotation class LocalDataSource
+
+    @Qualifier
+    @Retention(AnnotationRetention.RUNTIME)
+    annotation class RetrofitBaseUrl
 
     @Provides
     @RemoteDataSource
@@ -46,10 +50,17 @@ class AppModule {
     }
 
     @Provides
+    @RetrofitBaseUrl
     @Singleton
-    fun provideService(client: OkHttpClient, converter: Converter.Factory): NbaApi {
+    open fun provideRetrofitBaseUrl(): String {
+        return "https://raw.githubusercontent.com/"
+    }
+
+    @Provides
+    @Singleton
+    fun provideService(@RetrofitBaseUrl url: String, client: OkHttpClient, converter: Converter.Factory): NbaApi {
         return Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/")
+            .baseUrl(url)
             .addConverterFactory(converter)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
@@ -59,9 +70,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideClient(appContext: Context): OkHttpClient {
+    open fun provideClient(appContext: Context?): OkHttpClient {
         // Create a cache with the size of 10 Mib
-        val cacheDir = File(appContext.cacheDir, "httpCache")
+        val cacheDir = File(appContext!!.cacheDir, "httpCache")
         val cache = Cache(cacheDir, 10 * 1024 * 1024)
         // Create the client
         return OkHttpClient.Builder()
