@@ -24,6 +24,8 @@ class TeamPageActivity : BaseActivity(layoutRes = R.layout.activity_team_page) {
     private lateinit var playerLayoutManager: RecyclerView.LayoutManager
     private lateinit var playerAdapter: PlayerAdapter
 
+    private var teamId: Int = -1
+
     override fun onInject(appComponent: AppComponent) {
         appComponent.teamPageComponent().create().inject(this)
     }
@@ -40,7 +42,7 @@ class TeamPageActivity : BaseActivity(layoutRes = R.layout.activity_team_page) {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
         // Fetch the team
-        val teamId = intent.getIntExtra(INTENT_KEY_TEAM_ID, -1)
+        teamId = intent.getIntExtra(INTENT_KEY_TEAM_ID, -1)
         viewModel.fetchTeam(teamId, ::onFetchTeamSuccess, ::onFetchTeamError)
     }
 
@@ -53,8 +55,9 @@ class TeamPageActivity : BaseActivity(layoutRes = R.layout.activity_team_page) {
     }
 
     private fun onFetchTeamError(error: Throwable) {
-        Log.d("", "")
-        // TODO: Error
+        showErrorDialog("Failed to fetch team: $teamId") {
+            viewModel.fetchTeam(teamId, ::onFetchTeamSuccess, ::onFetchTeamError)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

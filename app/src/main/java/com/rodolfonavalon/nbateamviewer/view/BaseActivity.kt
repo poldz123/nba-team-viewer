@@ -1,8 +1,10 @@
 package com.rodolfonavalon.nbateamviewer.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
@@ -28,5 +30,17 @@ abstract class BaseActivity(@LayoutRes private val layoutRes: Int): AppCompatAct
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         onSetup()
+    }
+
+    fun showErrorDialog(message: String, onPositiveClick: () -> Unit) {
+        val dialog: AlertDialog = AlertDialog.Builder(this)
+            .setTitle("Error")
+            .setMessage(message)
+            .setPositiveButton("Retry") { dialog, _ ->
+                onPositiveClick()
+                dialog.dismiss()
+            }
+            .create()
+        dialog.show()
     }
 }

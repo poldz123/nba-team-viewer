@@ -44,8 +44,9 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
     }
 
     private fun onFetchTeamsError(error: Throwable) {
-        Log.d("", "")
-        // TODO: Error
+        showErrorDialog("Failed to fetch teams") {
+            viewModel.fetchTeams(::onFetchTeamsSuccess, ::onFetchTeamsError)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

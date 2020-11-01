@@ -9,6 +9,10 @@ import io.reactivex.Single
 class NbaLocalDataSource: NbaDataSource {
 
     override fun getTeams(): Single<List<Team>> {
+        // Did not implements this because there is no specification for data
+        // persistence within the task. But to summarize this data source, this
+        // would serve as the data persistence for the response using sqlite or any
+        // database management system to store them locally.
         TODO("Not yet implemented")
     }
 }

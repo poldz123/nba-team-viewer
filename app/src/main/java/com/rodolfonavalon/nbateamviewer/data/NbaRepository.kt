@@ -6,6 +6,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class NbaRepository @Inject constructor(
@@ -26,6 +27,7 @@ class NbaRepository @Inject constructor(
         } else {
             // Missing cache should fetch the data from the remote data source
             nbaRemoteDataSource.getTeams()
+                .timeout(5, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         }.map { teams ->
