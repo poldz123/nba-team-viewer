@@ -12,6 +12,7 @@ import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.io.File
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 class TestAppModule constructor(private val url: String) : AppModule() {
@@ -20,6 +21,7 @@ class TestAppModule constructor(private val url: String) : AppModule() {
     }
 
     override fun provideClient(appContext: Context?): OkHttpClient {
-        return OkHttpClient.Builder().build()
+        return OkHttpClient.Builder()
+            .build()
     }
 }

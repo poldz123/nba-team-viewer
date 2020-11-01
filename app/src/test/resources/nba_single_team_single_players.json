@@ -1,0 +1,17 @@
+[
+  {
+    "wins": 45,
+    "losses": 20,
+    "full_name": "Boston Celtics",
+    "id": 1,
+    "players": [
+      {
+        "id": 37729,
+        "first_name": "Kadeem",
+        "last_name": "Allen",
+        "position": "SG",
+        "number": 45
+      }
+    ]
+  }
+]

@@ -27,7 +27,6 @@ class NbaRepository @Inject constructor(
         } else {
             // Missing cache should fetch the data from the remote data source
             nbaRemoteDataSource.getTeams()
-                .timeout(5, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         }.map { teams ->
