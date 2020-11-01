@@ -12,14 +12,18 @@ buildscript {
     ext.applicationVersionCode = 1
     ext.applicationVersionName = "1.0"
 
+    // AndroidX Google Library
+    ext.googleActivityKtxVersion = "1.1.0"
+
     // Community Library
     ext.retrofitLibraryVersion = "2.8.2"
     ext.timberLibraryVersion = "1.5.1"
     ext.rxKotlinLibraryVersion = "2.2.0"
-    ext.rxAndroidLibraryVersion = "2.1.0"
+    ext.rxAndroidLibraryVersion = "2.1.1"
     ext.rxJavaLibraryVersion = "2.2.9"
     ext.moshiLibraryVersion = "1.11.0"
     ext.daggerLibraryVersion = "2.28.3"
+
     // Tools Library
     ext.kotlinVersion = "1.4.10"
     repositories {

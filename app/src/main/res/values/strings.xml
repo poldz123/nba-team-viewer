@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NbaTeamViewer</string>
+    <string name="team_wins">Wins: %1$d</string>
+    <string name="team_losses">Losses: %1$d</string>
 </resources>
