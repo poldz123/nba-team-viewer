@@ -21,6 +21,10 @@ class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
         notifyDataSetChanged()
     }
 
+    fun sort(teams: (List<Team>) -> List<Team>) {
+        addAll(teams(this.teams))
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_team, parent, false)
         return TeamViewHolder(view)

@@ -1,7 +1,10 @@
 package com.rodolfonavalon.nbateamviewer.view
 
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +27,7 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
     }
 
     override fun onSetup() {
+        // Setup views
         teamLayoutManager = LinearLayoutManager(this)
         teamRecyclerView = findViewById<RecyclerView>(R.id.recycler_teams).apply {
             layoutManager = teamLayoutManager
@@ -31,6 +35,7 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
             adapter = teamAdapter
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+        // Fetch the teams
         viewModel.fetchTeams(::onFetchTeamsSuccess, ::onFetchTeamsError)
     }
 
@@ -40,5 +45,31 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
 
     private fun onFetchTeamsError(error: Throwable) {
         Log.d("", "")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_teamlist_toolbar, menu);
+        return true;
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_teamlist_sort -> {
+                val popupMenu = PopupMenu(this, findViewById(R.id.menu_teamlist_sort))
+                popupMenu.inflate(R.menu.menu_teamlist_sort)
+                popupMenu.setOnMenuItemClickListener(::onOptionsItemSelected)
+                popupMenu.show()
+            }
+            R.id.menu_teamlist_sort_name -> {
+                teamAdapter.sort { teams -> teams.sortedBy { it.fullName } }
+            }
+            R.id.menu_teamlist_sort_wins -> {
+                teamAdapter.sort { teams -> teams.sortedBy { it.wins } }
+            }
+            R.id.menu_teamlist_sort_losses -> {
+                teamAdapter.sort { teams -> teams.sortedBy { it.losses } }
+            }
+        }
+        return true
     }
 }
