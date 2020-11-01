@@ -1,10 +1,13 @@
 package com.rodolfonavalon.nbateamviewer.view.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rodolfonavalon.nbateamviewer.R
 import com.rodolfonavalon.nbateamviewer.model.Team
+import com.rodolfonavalon.nbateamviewer.view.TeamPageActivity
+import com.rodolfonavalon.nbateamviewer.view.TeamPageActivity.Companion.INTENT_KEY_TEAM_ID
 
 class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
 {
@@ -36,7 +39,11 @@ class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
         holder.teamName.text = team.fullName
         holder.teamWins.text = context.getString(R.string.team_wins, team.wins)
         holder.teamLosses.text = context.getString(R.string.team_losses, team.losses)
-        holder.teamContainer.setOnClickListener {  }
+        holder.teamContainer.setOnClickListener {
+            val intent = Intent(context, TeamPageActivity::class.java)
+            intent.putExtra(INTENT_KEY_TEAM_ID, team.id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

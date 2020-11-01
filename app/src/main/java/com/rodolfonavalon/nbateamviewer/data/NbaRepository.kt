@@ -24,6 +24,7 @@ class NbaRepository @Inject constructor(
             // If the cache exist then just return it instead of doing another network call
             Single.just(cacheTeams.values.toList()).observeOn(AndroidSchedulers.mainThread())
         } else {
+            // Missing cache should fetch the data from the remote data source
             nbaRemoteDataSource.getTeams()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -37,15 +38,13 @@ class NbaRepository @Inject constructor(
         }
     }
 
-    fun getPlayers(forTeam: Team, onSuccess: () -> List<Team>, onError: () -> Unit): Disposable {
-//        var cacheTeams = this.cacheTeams
-//        if (cacheTeams == null) {
-//            getTeams()
-//        } else if (cacheTeams.containsKey(forTeam.id)) else {
-//            Observable.just(cacheTeams[]).subscribe(onSuccess)
-//        } else {
-//            Observable.error(NoClassDefFoundError)
-//        }
-        TODO("Not yet implemented")
+    fun getTeam(teamId: Int): Single<Team> {
+        val cacheTeams = this.cacheTeams
+        return if (cacheTeams != null) {
+            Single.just(cacheTeams[teamId] ?: error("Missing team: $teamId")).observeOn(AndroidSchedulers.mainThread())
+        } else {
+            // Missing cache should fetch the data from the remote data source
+            getTeams().map { this.cacheTeams!![teamId] }
+        }
     }
 }

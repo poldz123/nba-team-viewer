@@ -4,6 +4,7 @@ import android.content.Context
 import com.rodolfonavalon.nbateamviewer.di.appcomponent.module.AppModule
 import com.rodolfonavalon.nbateamviewer.di.appcomponent.module.ViewModelBuilderModule
 import com.rodolfonavalon.nbateamviewer.di.subcomponent.teamlist.TeamListComponent
+import com.rodolfonavalon.nbateamviewer.di.subcomponent.teampage.TeamPageComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -25,11 +26,13 @@ interface AppComponent {
     }
 
     fun teamListComponent(): TeamListComponent.Factory
+    fun teamPageComponent(): TeamPageComponent.Factory
 }
 
 @Module(
     subcomponents = [
-        TeamListComponent::class
+        TeamListComponent::class,
+        TeamPageComponent::class
     ]
 )
 object SubcomponentModule

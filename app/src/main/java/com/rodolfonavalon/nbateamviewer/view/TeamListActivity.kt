@@ -45,6 +45,7 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
 
     private fun onFetchTeamsError(error: Throwable) {
         Log.d("", "")
+        // TODO: Error
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,7 +65,7 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
                 teamAdapter.sort { teams -> teams.sortedBy { it.fullName } }
             }
             R.id.menu_teamlist_sort_wins -> {
-                teamAdapter.sort { teams -> teams.sortedBy { it.wins } }
+                teamAdapter.sort { teams -> teams.sortedByDescending { it.wins } }
             }
             R.id.menu_teamlist_sort_losses -> {
                 teamAdapter.sort { teams -> teams.sortedBy { it.losses } }

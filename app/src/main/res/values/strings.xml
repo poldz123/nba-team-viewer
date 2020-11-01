@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">NbaTeamViewer</string>
+
     <string name="team_wins">Wins: %1$d</string>
     <string name="team_losses">Losses: %1$d</string>
+    <string name="team_wins_losses">Wins: %1$d&#160;&#160;&#160;Losses: %2$d</string>
+
+    <string name="player_position">Position: %1$s</string>
+    <string name="player_number">Number: %1$d</string>
+
     <string name="all_win">Win</string>
     <string name="all_loss">Loss</string>
     <string name="all_name">Name</string>
