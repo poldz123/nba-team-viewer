@@ -124,7 +124,7 @@ class TeamListActivityTest : BaseRobolectricTest() {
     }
 
     @Test
-    fun testTeams_errorAndRetrySuccess() {
+    fun testTeams_errorThenRetrySuccess() {
         server.addResponse("/scoremedia/nba-team-viewer/master/input.json", 500)
         server.addResponsePath("/scoremedia/nba-team-viewer/master/input.json", "/nba_multiple_team")
         val expectedTeam = Team(id = 1,fullName = "Boston Celtics", wins = 45, losses = 20, players = mutableListOf())

@@ -12,7 +12,7 @@ import org.robolectric.Shadows.shadowOf
 open class BaseRobolectricTest : BaseMockServerTest() {
 
     inline fun <reified T : Activity> launchActivity(
-        intent: Intent = Intent(ApplicationProvider.getApplicationContext<TestNbaApplication>(), T::class.java),
+        intent: Intent,
         vararg permissions: String,
         crossinline callback: (T) -> Unit
     ): ActivityScenario<T> {
