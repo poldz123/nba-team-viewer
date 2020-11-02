@@ -1,10 +1,6 @@
 package com.rodolfonavalon.nbateamviewer.view
 
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +8,6 @@ import com.rodolfonavalon.nbateamviewer.R
 import com.rodolfonavalon.nbateamviewer.di.appcomponent.AppComponent
 import com.rodolfonavalon.nbateamviewer.model.Team
 import com.rodolfonavalon.nbateamviewer.view.adapter.PlayerAdapter
-import com.rodolfonavalon.nbateamviewer.view.adapter.TeamAdapter
-import com.rodolfonavalon.nbateamviewer.viewmodel.TeamListViewModel
 import com.rodolfonavalon.nbateamviewer.viewmodel.TeamPageViewModel
 
 class TeamPageActivity : BaseActivity(layoutRes = R.layout.activity_team_page) {
@@ -65,7 +59,6 @@ class TeamPageActivity : BaseActivity(layoutRes = R.layout.activity_team_page) {
         finish()
         return super.onSupportNavigateUp()
     }
-
 
     companion object {
         const val INTENT_KEY_TEAM_ID = "INTENT_KEY_TEAM_ID"

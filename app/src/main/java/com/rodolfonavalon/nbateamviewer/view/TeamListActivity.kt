@@ -1,6 +1,5 @@
 package com.rodolfonavalon.nbateamviewer.view
 
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -50,8 +49,8 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_teamlist_toolbar, menu);
-        return true;
+        menuInflater.inflate(R.menu.menu_teamlist_toolbar, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

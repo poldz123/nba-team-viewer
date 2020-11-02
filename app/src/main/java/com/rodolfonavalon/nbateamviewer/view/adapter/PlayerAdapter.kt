@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rodolfonavalon.nbateamviewer.R
 import com.rodolfonavalon.nbateamviewer.model.Player
-import com.rodolfonavalon.nbateamviewer.model.Team
 
-class PlayerAdapter: RecyclerView.Adapter<PlayerViewHolder>()
-{
+class PlayerAdapter : RecyclerView.Adapter<PlayerViewHolder>() {
     private val players = mutableListOf<Player>()
 
     fun addAll(players: List<Player>) {

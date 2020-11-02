@@ -4,12 +4,10 @@ import androidx.lifecycle.ViewModel
 import com.rodolfonavalon.nbateamviewer.data.NbaRepository
 import com.rodolfonavalon.nbateamviewer.model.Team
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class TeamListViewModel @Inject constructor(private val repository: NbaRepository): ViewModel() {
+class TeamListViewModel @Inject constructor(private val repository: NbaRepository) : ViewModel() {
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun fetchTeams(success: (List<Team>) -> Unit, error: (Throwable) -> Unit) {

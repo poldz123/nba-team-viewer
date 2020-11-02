@@ -55,6 +55,24 @@ android {
     }
 }
 
+// Task used to do code formatting to the entire source code.
+task detektFormat(type: io.gitlab.arturbosch.detekt.Detekt) {
+    group = "Code Format"
+    description = "Runs a detekt with autocorrect code formatting."
+    source = files("src/main/java")
+    config.from(files("$rootDir/plugins/data/detekt-format-plugin-config.yml"))
+    autoCorrect = true
+    ignoreFailures = true
+    reports {
+        xml.enabled = false
+        html.enabled = false
+    }
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("resources/")
+    exclude("build/")
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 

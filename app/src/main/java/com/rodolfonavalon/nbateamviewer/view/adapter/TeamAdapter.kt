@@ -10,8 +10,7 @@ import com.rodolfonavalon.nbateamviewer.model.Team
 import com.rodolfonavalon.nbateamviewer.view.TeamPageActivity
 import com.rodolfonavalon.nbateamviewer.view.TeamPageActivity.Companion.INTENT_KEY_TEAM_ID
 
-class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
-{
+class TeamAdapter : RecyclerView.Adapter<TeamViewHolder>() {
     @VisibleForTesting
     val teams = mutableListOf<Team>()
 

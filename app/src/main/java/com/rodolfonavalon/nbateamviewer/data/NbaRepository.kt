@@ -4,9 +4,7 @@ import com.rodolfonavalon.nbateamviewer.di.appcomponent.module.AppModule
 import com.rodolfonavalon.nbateamviewer.model.Team
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class NbaRepository @Inject constructor(
@@ -17,7 +15,7 @@ class NbaRepository @Inject constructor(
 ) {
     // Storage cache for the teams. This is useful when multiple calls to retrieve the
     // teams would prevent further network calls.
-    private var cacheTeams: Map<Int, Team>? = null;
+    private var cacheTeams: Map<Int, Team>? = null
 
     fun getTeams(): Single<List<Team>> {
         val cacheTeams = this.cacheTeams
@@ -32,7 +30,7 @@ class NbaRepository @Inject constructor(
         }.map { teams ->
             if (cacheTeams == null) {
                 // Cache the teams in a map to easily get each of the teams
-                this.cacheTeams = teams.associateBy({it.id}, {it})
+                this.cacheTeams = teams.associateBy({ it.id }, { it })
             }
             // Sort the teams in alphabetical order by default
             teams.sortedBy { it.fullName }
