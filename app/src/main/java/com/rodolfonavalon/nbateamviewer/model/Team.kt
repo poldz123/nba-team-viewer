@@ -6,13 +6,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class Team(
     @Json(name = "id")
-    var id: Int,
+    val id: Int,
     @Json(name = "wins")
-    var wins: Int,
+    val wins: Int,
     @Json(name = "losses")
-    var losses: Int,
+    val losses: Int,
     @Json(name = "full_name")
-    var fullName: String,
+    val fullName: String,
     @Json(name = "players")
-    var players: List<Player>
+    val players: List<Player>
 )

@@ -21,11 +21,6 @@ class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
         notifyDataSetChanged()
     }
 
-    fun clear() {
-        this.teams.clear()
-        notifyDataSetChanged()
-    }
-
     fun sort(teams: (List<Team>) -> List<Team>) {
         addAll(teams(this.teams))
     }

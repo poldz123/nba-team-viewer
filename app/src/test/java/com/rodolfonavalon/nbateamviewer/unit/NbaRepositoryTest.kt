@@ -2,13 +2,10 @@ package com.rodolfonavalon.nbateamviewer.unit
 
 import com.google.common.truth.Truth.assertThat
 import com.rodolfonavalon.nbateamviewer.data.NbaRepository
-import com.rodolfonavalon.nbateamviewer.data.local.NbaLocalDataSource
-import com.rodolfonavalon.nbateamviewer.data.remote.NbaApi
-import com.rodolfonavalon.nbateamviewer.data.remote.NbaRemoteDataSource
 import com.rodolfonavalon.nbateamviewer.model.Team
 import com.rodolfonavalon.nbateamviewer.util.BaseMockServerTest
 import com.rodolfonavalon.nbateamviewer.util.di.appcomponent.DaggerTestAppComponent
-import com.rodolfonavalon.nbateamviewer.util.di.appcomponent.module.TestAppModule
+import com.rodolfonavalon.nbateamviewer.util.di.appcomponent.module.TestAppModuleUnit
 import io.reactivex.rxkotlin.subscribeBy
 import org.junit.Test
 import retrofit2.HttpException
@@ -21,13 +18,24 @@ class NbaRepositoryTest : BaseMockServerTest() {
 
     override fun setup() {
         super.setup()
-        DaggerTestAppComponent.factory().create(null, TestAppModule(server.url("").toString())).into(this)
+        DaggerTestAppComponent.factory().create(null, TestAppModuleUnit(server.url("").toString())).into(this)
     }
 
     @Test
     fun testGetTeams_multipleTeams() {
         server.addResponsePath("/scoremedia/nba-team-viewer/master/input.json", "/nba_multiple_team")
         val (testTeams, testError) = testGetTeams()
+        assertThat(testTeams).isNotNull()
+        assertThat(testTeams).isNotEmpty()
+        assertThat(testTeams).hasSize(30)
+        assertThat(testError).isNull()
+    }
+    @Test
+    fun testGetTeams_multipleTeamsCache() {
+        // This will trigger to get the cache within the repository
+        server.addResponsePath("/scoremedia/nba-team-viewer/master/input.json", "/nba_multiple_team")
+        testGetTeams() // Retrieve teams from network
+        val (testTeams, testError) = testGetTeams() // Retrieve teams from cache
         assertThat(testTeams).isNotNull()
         assertThat(testTeams).isNotEmpty()
         assertThat(testTeams).hasSize(30)
@@ -74,6 +82,17 @@ class NbaRepositoryTest : BaseMockServerTest() {
     fun testGetTeam_multiplePlayers() {
         server.addResponsePath("/scoremedia/nba-team-viewer/master/input.json", "/nba_single_team_multiple_players")
         val (testTeam, testError) = testGetTeam(1)
+        assertThat(testTeam).isNotNull()
+        assertThat(testTeam?.players).isNotEmpty()
+        assertThat(testTeam?.players).hasSize(17)
+        assertThat(testError).isNull()
+    }
+
+    @Test
+    fun testGetTeam_multiplePlayersCache() {
+        server.addResponsePath("/scoremedia/nba-team-viewer/master/input.json", "/nba_single_team_multiple_players")
+        testGetTeam(1) // Retrieve a team from the network
+        val (testTeam, testError) = testGetTeam(1) // Retrieve a team from the cache
         assertThat(testTeam).isNotNull()
         assertThat(testTeam?.players).isNotEmpty()
         assertThat(testTeam?.players).hasSize(17)

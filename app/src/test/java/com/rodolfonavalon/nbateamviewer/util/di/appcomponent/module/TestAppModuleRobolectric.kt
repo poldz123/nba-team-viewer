@@ -15,13 +15,8 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-class TestAppModule constructor(private val url: String) : AppModule() {
+class TestAppModuleRobolectric constructor(private val url: String) : AppModule() {
     override fun provideRetrofitBaseUrl(): String {
         return url
-    }
-
-    override fun provideClient(appContext: Context?): OkHttpClient {
-        return OkHttpClient.Builder()
-            .build()
     }
 }

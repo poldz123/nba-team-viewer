@@ -10,7 +10,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class TeamListViewModel @Inject constructor(private val repository: NbaRepository): ViewModel() {
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun fetchTeams(success: (List<Team>) -> Unit, error: (Throwable) -> Unit) {
         repository.getTeams().subscribe(success, error).addTo(compositeDisposable)

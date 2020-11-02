@@ -42,7 +42,7 @@ class NbaRepository @Inject constructor(
     fun getTeam(teamId: Int): Single<Team> {
         val cacheTeams = this.cacheTeams
         return if (cacheTeams != null) {
-            Single.just(cacheTeams[teamId] ?: error("Missing team: $teamId")).observeOn(AndroidSchedulers.mainThread())
+            Single.just(cacheTeams[teamId]!!).observeOn(AndroidSchedulers.mainThread())
         } else {
             // Missing cache should fetch the data from the remote data source
             getTeams().map { this.cacheTeams!![teamId] }
