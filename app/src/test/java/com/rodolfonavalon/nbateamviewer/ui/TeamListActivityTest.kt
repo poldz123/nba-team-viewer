@@ -61,8 +61,18 @@ class TeamListActivityTest : BaseRobolectricTest() {
                 // Check that the list is alphabetically ordered
                 t1.fullName.compareTo(t2.fullName)
             })
+            activity.onOptionsItemSelected(RoboMenuItem(R.id.menu_teamlist_sort_name_desc))
+            assertThat(adapter.teams).isOrdered(Comparator<Team> { t1, t2 ->
+                // Check that the list is alphabetically ordered
+                t2.fullName.compareTo(t1.fullName)
+            })
             // Click the wins sort
             activity.onOptionsItemSelected(RoboMenuItem(R.id.menu_teamlist_sort_wins))
+            assertThat(adapter.teams).isOrdered(Comparator<Team> { t1, t2 ->
+                // Check that the list is ordered by highest to lowest wins
+                t1.wins.compareTo(t2.wins)
+            })
+            activity.onOptionsItemSelected(RoboMenuItem(R.id.menu_teamlist_sort_wins_desc))
             assertThat(adapter.teams).isOrdered(Comparator<Team> { t1, t2 ->
                 // Check that the list is ordered by highest to lowest wins
                 t2.wins.compareTo(t1.wins)
@@ -72,6 +82,11 @@ class TeamListActivityTest : BaseRobolectricTest() {
             assertThat(adapter.teams).isOrdered(Comparator<Team> { t1, t2 ->
                 // Check that the list is ordered by lowest to highest losses
                 t1.losses.compareTo(t2.losses)
+            })
+            activity.onOptionsItemSelected(RoboMenuItem(R.id.menu_teamlist_sort_losses_desc))
+            assertThat(adapter.teams).isOrdered(Comparator<Team> { t1, t2 ->
+                // Check that the list is ordered by lowest to highest losses
+                t2.losses.compareTo(t1.losses)
             })
         }
     }

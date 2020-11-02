@@ -8,8 +8,11 @@
     <string name="player_position">Position: %1$s</string>
     <string name="player_number">Number: %1$d</string>
 
-    <string name="all_win">Win</string>
-    <string name="all_loss">Loss</string>
-    <string name="all_name">Name</string>
+    <string name="all_win_asc">Win Asc</string>
+    <string name="all_loss_asc">Loss Asc</string>
+    <string name="all_name_asc">Name Asc</string>
+    <string name="all_win_desc">Win Desc</string>
+    <string name="all_loss_desc">Loss Desc</string>
+    <string name="all_name_desc">Name Desc</string>
     <string name="all_sort">Sort</string>
 </resources>

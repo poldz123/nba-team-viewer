@@ -2,11 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_teamlist_sort_name"
-        android:title="@string/all_name" />
+        android:title="@string/all_name_asc" />
+    <item
+        android:id="@+id/menu_teamlist_sort_name_desc"
+        android:title="@string/all_name_desc" />
     <item
         android:id="@+id/menu_teamlist_sort_wins"
-        android:title="@string/all_win" />
+        android:title="@string/all_win_asc" />
+    <item
+        android:id="@+id/menu_teamlist_sort_wins_desc"
+        android:title="@string/all_win_desc" />
     <item
         android:id="@+id/menu_teamlist_sort_losses"
-        android:title="@string/all_loss" />
+        android:title="@string/all_loss_asc" />
+    <item
+        android:id="@+id/menu_teamlist_sort_losses_desc"
+        android:title="@string/all_loss_desc" />
 </menu>

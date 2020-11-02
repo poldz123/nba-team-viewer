@@ -64,11 +64,20 @@ class TeamListActivity : BaseActivity(layoutRes = R.layout.activity_team_list) {
             R.id.menu_teamlist_sort_name -> {
                 teamAdapter.sort { teams -> teams.sortedBy { it.fullName } }
             }
+            R.id.menu_teamlist_sort_name_desc -> {
+                teamAdapter.sort { teams -> teams.sortedByDescending { it.fullName } }
+            }
             R.id.menu_teamlist_sort_wins -> {
+                teamAdapter.sort { teams -> teams.sortedBy { it.wins } }
+            }
+            R.id.menu_teamlist_sort_wins_desc -> {
                 teamAdapter.sort { teams -> teams.sortedByDescending { it.wins } }
             }
             R.id.menu_teamlist_sort_losses -> {
                 teamAdapter.sort { teams -> teams.sortedBy { it.losses } }
+            }
+            R.id.menu_teamlist_sort_losses_desc -> {
+                teamAdapter.sort { teams -> teams.sortedByDescending { it.losses } }
             }
         }
         return true
