@@ -3,6 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply from: '../plugins/jacoco-plugin.gradle'
+apply from: '../plugins/detekt-plugin.gradle'
+
 android {
     compileSdkVersion rootProject.ext.applicationCompileSdkVersion
     buildToolsVersion rootProject.ext.buildToolVersion
@@ -22,10 +25,19 @@ android {
         }
     }
     testOptions {
-        unitTests {
-            includeAndroidResources = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        animationsDisabled true
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            // Apply the gradle logs which the custom logger will configure
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

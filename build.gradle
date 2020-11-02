@@ -37,8 +37,8 @@ buildscript {
 
     // Tools Library
     ext.kotlinVersion = "1.4.10"
-    ext.jacocoVersion = "0.8.5"
-    ext.detektVersion = "1.1.1"
+    ext.jacocoVersion = "0.8.6"
+    ext.detektVersion = "1.14.2"
 
     repositories {
         google()
@@ -47,16 +47,23 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleBuildToolVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-
+        classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+
+plugins {
+    // This is a customized logger for unit test to display pretty logs.
+    id "com.adarshr.test-logger" version "1.4.0"
+    id "io.gitlab.arturbosch.detekt" version "1.14.2"
 }
 
 allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

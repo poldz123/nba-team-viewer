@@ -1,0 +1,25 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+detekt {
+    toolVersion = "$detektVersion"
+    input = files(
+            "$rootDir/src/main/kotlin/com/serverless"
+    )
+    config = files("$rootDir/plugins/data/detekt-plugin-config.yml")
+    parallel = true
+    // We should not auto correct on detekt by default. Only the detekt format
+    // should have the ability to format the code.
+    autoCorrect = false
+    reports {
+        html {
+            enabled = true
+            destination = file("$rootDir/build/reports/detekt/detekt.html")
+        }
+    }
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
+}
+
+tasks.detekt.jvmTarget = "1.8"
