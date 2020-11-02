@@ -1,3 +1,9 @@
+# NbaTeamViewer
+
+| Build  | Code Coverage |
+| ------------- | ------------- |
+| [![pipeline status](https://gitlab.com/poldz123/nba-team-viewer/badges/master/pipeline.svg)](https://gitlab.com/poldz123/nba-team-viewer/-/commits/master) | [![coverage report](https://gitlab.com/poldz123/nba-team-viewer/badges/master/coverage.svg)](https://gitlab.com/poldz123/nba-team-viewer/-/commits/master) |
+
 # theScore "NBA Team Viewer" Interview Question
 At theScore, we're always looking for intelligent and resourceful Android developers to join our growing team. To help us evaluate new talent, we have created this take-home interview question. This challenge would take few hours to finish, we advice to read the requirement carefully. If you have any question please don't hasitate to ask. 
 
