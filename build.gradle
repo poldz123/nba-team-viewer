@@ -30,7 +30,7 @@ buildscript {
 
     // Test Library
     ext.junitLibraryVersion = "4.12"
-    ext.robolectricLibraryVersion = "4.3.1"
+    ext.robolectricLibraryVersion = "4.4"
     ext.okHttpMockWebserverLibraryVersion = "3.10.0"
     ext.googleTestSupport = "1.1.0"
     ext.googleTrustLibraryVersion = "0.40"

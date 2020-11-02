@@ -21,6 +21,11 @@ android {
             resources.srcDir "src/test/resources"
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

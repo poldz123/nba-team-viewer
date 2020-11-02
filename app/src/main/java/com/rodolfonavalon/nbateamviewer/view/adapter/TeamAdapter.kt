@@ -3,6 +3,7 @@ package com.rodolfonavalon.nbateamviewer.view.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.RecyclerView
 import com.rodolfonavalon.nbateamviewer.R
 import com.rodolfonavalon.nbateamviewer.model.Team
@@ -11,7 +12,8 @@ import com.rodolfonavalon.nbateamviewer.view.TeamPageActivity.Companion.INTENT_K
 
 class TeamAdapter: RecyclerView.Adapter<TeamViewHolder>()
 {
-    private val teams = mutableListOf<Team>()
+    @VisibleForTesting
+    val teams = mutableListOf<Team>()
 
     fun addAll(teams: List<Team>) {
         this.teams.clear()
